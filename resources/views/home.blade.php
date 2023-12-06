@@ -123,7 +123,7 @@
                 </div>
             </div>
             <div id="imghome">
-                <img src="https://dplnews.com/wp-content/uploads/2023/03/dplnews_Cable-Color-HN_dn010323.jpg">
+                <img src="https://lh4.googleusercontent.com/E2hSBHk_T8LChWkv8HMwDa1EFr0CWOpH8siVTKgPJJF3sUpn7O-VDJ0xST4vT4K-eXw0yXxaA0phK72gXQwUWXkXCqD53L1hRmyrytBOH-CGw7LHGjuNb-UR6ALBmk5g=w1280">
             </div>
 
             <!-- Bootstrap core JavaScript-->
@@ -146,7 +146,7 @@
             <style>
 
                 #imghome img {
-                    width: 100%; /* Ancho del 100% del contenedor */
+                    margin-left: 30%;
                     height: auto; /* Altura automática para mantener la proporción original */
                 }
 

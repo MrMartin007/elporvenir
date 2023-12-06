@@ -64,8 +64,8 @@ return [
     */
 
     'logo' => '<b>El</b> Porvenir',
-    'logo_img' => 'https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/042015/cable_color_logo.png?itok=QneSkBAo',
-    'logo_img_class' => 'brand-image img-circle elevation-5',
+    'logo_img' => 'https://lh6.googleusercontent.com/mKKZ9Ofvf-i5s-rQv1he4D1SMpJheSKYBljRz3nBDploPcg1BICEMUngyjwYjn42uFvLMwlDPkfFXLhJIiz5gogv1TpDUTa3UNu82mhYOGudhNYzmWBxL57oPxgM2c4epQ=w1280',
+    'logo_img_class' => 'brand-image elevation-5',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'Admin Logo',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/042015/cable_color_logo.png?itok=QneSkBAo',
+            'path' => 'https://lh6.googleusercontent.com/mKKZ9Ofvf-i5s-rQv1he4D1SMpJheSKYBljRz3nBDploPcg1BICEMUngyjwYjn42uFvLMwlDPkfFXLhJIiz5gogv1TpDUTa3UNu82mhYOGudhNYzmWBxL57oPxgM2c4epQ=w1280',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 70,
@@ -109,11 +109,11 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/042015/cable_color_logo.png?itok=QneSkBAo',
+            'path' => 'https://lh4.googleusercontent.com/E2hSBHk_T8LChWkv8HMwDa1EFr0CWOpH8siVTKgPJJF3sUpn7O-VDJ0xST4vT4K-eXw0yXxaA0phK72gXQwUWXkXCqD53L1hRmyrytBOH-CGw7LHGjuNb-UR6ALBmk5g=w1280',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
-            'width' => 200,
-            'height' => 200,
+            'width' => 500,
+            'height' => 500,
         ],
     ],
 

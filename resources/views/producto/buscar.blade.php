@@ -11,6 +11,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
+
                         <div class="d-flex justify-content-between align-items-center">
                         <h3>Buscar Producto</h3>
                             <div class="card-body">
@@ -28,11 +29,13 @@
                     </div>
 
                     @if(isset($productos))
-                        <div class="container mt-4">
+                        <div class="container">
                             @if($productos->count() > 0)
-                                <h4>Cliente:</h4>
-                                <table class="table">
-                                    <thead>
+                                <h4>Producto:</h4>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover">
+                                            <thead class="thead">
                                     <tr>
                                         <th>Codigo del Producto</th>
                                         <th>Marca</th>

@@ -30,7 +30,7 @@
 
         .image {
             width: 500px;
-            height: 280px;
+            height: 450px;
         }
 
         .border-line {
@@ -103,7 +103,7 @@
 
         .bg-blue {
             color: #fff;
-            background-color: #C342FF;
+            background-color: pink;
         }
 
         @media screen and (max-width: 991px) {
@@ -133,11 +133,8 @@
             <div class="row d-flex">
                 <div class="col-lg-6">
                     <div class="card1 pb-5">
-                        <div class="row">
-                            <img src="https://mallgaleriashn.com/themes/galerias/assets/images/logos/stores/cable-color.png" class="logo">
-                        </div>
                         <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
-                            <img src="https://empleos.com.gt/wp-content/uploads/2020/02/Trabajos-en-Cable-Color.jpg" class="image">
+                            <img src="https://lh6.googleusercontent.com/mKKZ9Ofvf-i5s-rQv1he4D1SMpJheSKYBljRz3nBDploPcg1BICEMUngyjwYjn42uFvLMwlDPkfFXLhJIiz5gogv1TpDUTa3UNu82mhYOGudhNYzmWBxL57oPxgM2c4epQ=w1280" class="image">
                         </div>
                     </div>
                 </div>
