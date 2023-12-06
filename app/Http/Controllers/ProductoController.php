@@ -59,7 +59,7 @@ class ProductoController extends Controller
         // Carga de la foto y asignación de la ruta a la entidad "Marca"
         if ($request->hasFile('foto_producto')) {
             $foto = $request->file('foto_producto');
-            $rutaFoto = $foto->store('productos', 'public');
+            $rutaFoto = $foto->store('productos', 'public_html');
         }
 
         // Creación de la entidad "Marca" con los datos ingresados

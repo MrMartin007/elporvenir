@@ -13,7 +13,6 @@
                     <div class="card-header">
 
                         <div class="d-flex justify-content-between align-items-center">
-                        <h3>Buscar Producto</h3>
                             <div class="card-body">
                             <form method="GET" action="{{ route('resultados') }}" class="text-center">
                                 <div class="input-group input-group-lg">
@@ -31,11 +30,12 @@
                     @if(isset($productos))
                         <div class="container">
                             @if($productos->count() > 0)
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead class="thead">
                                 <h4>Producto:</h4>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-hover">
-                                            <thead class="thead">
+
                                     <tr>
                                         <th>Codigo del Producto</th>
                                         <th>Marca</th>
