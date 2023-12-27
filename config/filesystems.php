@@ -52,15 +52,13 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
-
-        'public_html' => [
-        'driver' => 'local',
-        'root' => storage_path('app/public'),
-        'url' => env('APP_URL').'/storage',
-        'visibility' => 'public',
+        'custom_disk' => [
+            'driver' => 'local',
+            'root' => base_path('public_html/storage'),
+            'url' => env('APP_URL').'/storage',
         ],
-    ],
 
+    ],
 
     /*
     |--------------------------------------------------------------------------

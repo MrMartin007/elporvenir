@@ -2,9 +2,8 @@
 @section('title', 'EL Porvenir')
 
 @section('template_title')
-    {{ __('Actualizar') }} Marca
+    {{ __('Create') }} Cheque
 @endsection
-
 
 @section('content')
     <section class="content container-fluid">
@@ -13,23 +12,27 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="card shadow-lg p-3 mb-5 bg-white ">
-                        <div class="card-header">EDITAR MARCA</div>
+                        <div class="card-header">Asignar Cheque</div>
                         <div class="card-body">
-                @includeif('partials.errors')
 
-                <div class="card card-default">
+                        @includeif('partials.errors')
                     <div class="card-body">
-                        <form method="POST" action="{{ route('marcas.update', $marca->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        <div class="form-row">
+                            <input type="hidden" name="factura_id" value="{{ $factura->id }}">
+                        </div>
+
+                        <form method="POST" action="{{ route('cheques.store', $factura->id) }}" role="form" enctype="multipart/form-data">
+
                             @csrf
-
-                            @include('marca.form')
-
+                            @include('cheque.form')
+                            <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
                         </form>
+
+
                     </div>
                 </div>
-                        </div>
-                    </div>
+            </div>
+
                 </div>
             </div>
         </div>

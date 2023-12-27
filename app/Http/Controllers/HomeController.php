@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AsignarServicio;
-use App\Models\Tecnico;
+use App\Models\Producto;
+use App\Models\Marca;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,9 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Realiza una consulta para obtener el número de servicios asignados
+        // Obtener el número total de productos
+        $totalProductos = Producto::count();
 
+        // Obtener el número total de marcas
+        $totalMarcas = Marca::count();
 
-        return view('home');
+        return view('home', compact('totalProductos', 'totalMarcas'));
     }
 }

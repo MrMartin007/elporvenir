@@ -2,7 +2,7 @@
 @section('title', 'El Porvenir')
 
 @section('template_title')
-    MARCAS
+    EMPRESAS
 @endsection
 
 @section('content')
@@ -11,12 +11,11 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-header">
-    <span id="card_title" style=" display: flex; font-size: 24px; font-weight: bold; margin: auto; justify-content: space-between; align-items: center;">
-        {{ __('Marcas Registrados') }}
-    </span>
+                        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                            <span id="card_title" style="font-size: 24px; font-weight: bold;">
+                                {{ __('Empresas Registradas') }}
+                            </span>
                         </div>
-
                     </div>
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success">
@@ -31,24 +30,26 @@
                                     <tr>
                                         <th>No</th>
 
-										<th>Nombre Marca</th>
+										<th>Nombre Empresa</th>
+										<th>Proveedor</th>
+                                        <th>Accion</th>
 
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($marcas as $marca)
+                                    @foreach ($empresas as $empresa)
                                         <tr>
-                                            <td>{{ $marca->id  }}</td>
+                                            <td>{{ ++$i }}</td>
 
-											<td>{{ $marca->nombre_marca }}</td>
+											<td>{{ $empresa->nombre_empresa }}</td>
+											<td>{{ $empresa->proveedor }}</td>
 
                                             <td>
-                                                <form action="{{ route('marcas.destroy',$marca->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-success" href="{{ route('marcas.edit',$marca->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('empresas.destroy',$empresa->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-success" href="{{ route('empresas.edit',$empresa->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -58,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-                {{ $marcas->onEachSide(3)->links('pagination::simple-bootstrap-4') }}
+                {!! $empresas->links() !!}
             </div>
         </div>
     </div>

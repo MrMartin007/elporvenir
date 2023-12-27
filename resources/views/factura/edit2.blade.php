@@ -2,7 +2,7 @@
 @section('title', 'EL Porvenir')
 
 @section('template_title')
-    {{ __('Actualizar') }} Marca
+    {{ __('Actualizar') }} CHQUES
 @endsection
 
 
@@ -13,21 +13,20 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="card shadow-lg p-3 mb-5 bg-white ">
-                        <div class="card-header">EDITAR MARCA</div>
+                        <div class="card-header">Asignar Cheque</div>
                         <div class="card-body">
-                @includeif('partials.errors')
+                            @includeif('partials.errors')
 
-                <div class="card card-default">
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('marcas.update', $marca->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
-                            @csrf
+                            <div class="card card-default">
+                                <div class="card-body">
+                                    <form method="POST" action="{{ route('facturas.update', $factura->id) }}"  role="form" enctype="multipart/form-data">
+                                        {{ method_field('PATCH') }}
+                                        @csrf
 
-                            @include('marca.form')
-
-                        </form>
-                    </div>
-                </div>
+                                        @include('factura.form2')
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

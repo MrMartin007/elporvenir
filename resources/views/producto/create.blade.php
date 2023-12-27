@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Dashboard')
+@section('title', 'EL Porvenir')
 
 @section('template_title')
     {{ __('Create') }} Producto
@@ -16,18 +16,18 @@
                         <div class="card-body">
 
 
-                        @includeif('partials.errors')
+                            @includeif('partials.errors')
 
-                <div class="card card-default">
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('productos.store') }}"  role="form" enctype="multipart/form-data">
-                            @csrf
+                            <div class="card card-default">
+                                <div class="card-body">
+                                    <form method="POST" action="{{ route('productos.store') }}"  role="form" enctype="multipart/form-data">
+                                        @csrf
 
-                            @include('producto.form')
+                                        @include('producto.form')
 
-                        </form>
-                    </div>
-                </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -60,5 +60,4 @@
     </style>
 
 @endsection
-
 

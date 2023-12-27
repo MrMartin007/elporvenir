@@ -34,7 +34,8 @@ class Producto extends Model
         'marcas_id' => 'required',
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 3;
+
 
     /**
      * Attributes that should be mass-assignable.
@@ -42,6 +43,7 @@ class Producto extends Model
      * @var array
      */
     protected $fillable = ['codigo_producto','detalle_producto','foto_producto','precio_costo','precio_venta','precio_docena','marcas_id'];
+
 
 
     public function marca()

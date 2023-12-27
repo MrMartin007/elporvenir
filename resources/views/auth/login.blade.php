@@ -1,7 +1,5 @@
 @extends('layouts.appp')
 
-@section('title', 'Login')
-
 @section('content')
     <style>
         body {
@@ -18,7 +16,7 @@
         }
 
         .card2 {
-            margin: 0px 40px;
+            margin: 0px 15px; /* Ajuste del margen para dispositivos móviles */
         }
 
         .logo {
@@ -29,13 +27,16 @@
         }
 
         .image {
-            width: 500px;
-            height: 450px;
+            width: 100%; /* Hacer la imagen ancha al 100% del contenedor */
+            max-width: 500px; /* Establecer un ancho máximo para evitar que sea demasiado grande */
+            height: auto; /* Mantener la proporción original */
+            margin-top: 20px;
         }
 
         .border-line {
             border-right: 1px solid #EEEEEE;
         }
+
         .text-sm {
             font-size: 14px !important;
         }
@@ -91,7 +92,7 @@
 
         .btn-blue {
             background-color: #6f42c1;
-            width: 150px;
+            width: 100%; /* Hacer el botón ancho al 100% del contenedor */
             color: #fff;
             border-radius: 2px;
         }
@@ -106,14 +107,16 @@
             background-color: pink;
         }
 
-        @media screen and (max-width: 991px) {
+        @media screen and (max-width: 767px) {
             .logo {
-                margin-left: 0px;
+                margin-left: 0; /* Ajuste del margen para dispositivos móviles */
             }
 
             .image {
-                width: 300px;
-                height: 220px;
+                width: 100%; /* Hacer la imagen ancha al 100% del contenedor */
+                max-width: 300px; /* Establecer un ancho máximo para evitar que sea demasiado grande */
+                height: auto; /* Mantener la proporción original */
+                margin-top: 0; /* Eliminar el margen superior */
             }
 
             .border-line {
@@ -122,7 +125,7 @@
 
             .card2 {
                 border-top: 1px solid #EEEEEE !important;
-                margin: 0px 15px;
+                margin: 0px 0px; /* Ajuste del margen para dispositivos móviles */
             }
         }
 

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Marca;
 use App\Models\Producto;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class ProductoController
@@ -12,19 +14,48 @@ use Illuminate\Http\Request;
  */
 class ProductoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth'); // Aplica el middleware auth a todas las acciones del controlador
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $productos = Producto::paginate();
         $marcas = Marca::pluck('nombre_marca', 'id');
 
-        return view('producto.index', compact('productos','marcas'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+        // Obtén el valor de búsqueda desde la solicitud
+        $search = $request->input('search');
+
+        // Query Builder para la búsqueda
+        $query = Producto::query();
+
+        // Aplicar la condición de búsqueda si se proporciona
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('codigo_producto', 'like', "%$search%")
+                    ->orWhere('detalle_producto', 'like', "%$search%")
+                    ->orWhereHas('marca', function ($subq) use ($search) {
+                        $subq->where('nombre_marca', 'like', "%$search%");
+                    });
+            });
+        }
+
+        // Obtén los productos paginados
+        $query->orderBy('created_at', 'desc');
+
+        $productos = $query->paginate(3);
+
+        // Conserva el valor de búsqueda al generar la URL de paginación
+        $productos->appends(['search' => $search]);
+
+        return view('producto.index', compact('productos', 'marcas'))
+            ->with('search', $search);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -46,8 +77,9 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        try {
         $request->validate([
-            'codigo_producto' => 'required',
+            'codigo_producto' => 'required|unique:productos,codigo_producto',
             'detalle_producto' => 'required',
             'precio_costo' => 'required',
             'precio_venta' => 'required',
@@ -59,7 +91,8 @@ class ProductoController extends Controller
         // Carga de la foto y asignación de la ruta a la entidad "Marca"
         if ($request->hasFile('foto_producto')) {
             $foto = $request->file('foto_producto');
-            $rutaFoto = $foto->store('productos', 'public_html');
+            $rutaFoto = $foto->store('productos', 'custom_disk');
+            $rutaFotos = $foto->store('productos', 'public');
         }
 
         // Creación de la entidad "Marca" con los datos ingresados
@@ -71,10 +104,17 @@ class ProductoController extends Controller
         $producto->precio_docena = $request->precio_docena;
         $producto->marcas_id = $request->marcas_id;
         $producto->foto_producto = $rutaFoto ?? null; // Asignación de la ruta de la foto o null si no se cargó ninguna foto
+        $producto->foto_producto = $rutaFotos ?? null; // Asignación de la ruta de la foto o null si no se cargó ninguna foto
         $producto->save();
+        }catch(QueryException $queryException){
 
+            Log::debug($queryException->getMessage());
+
+            return redirect()->route('productos.create')->with('alertaQery', 'murio');
+
+        }
         return redirect()->route('productos.index')
-            ->with('success', 'Producto created successfully.');
+            ->with('Guardado', 'Guardado');
     }
 
     /**
@@ -135,12 +175,17 @@ class ProductoController extends Controller
         // Actualizar la foto solo si se proporciona una nueva imagen
         if ($request->hasFile('foto_producto')) {
             $foto = $request->file('foto_producto');
-            $rutaFoto = $foto->store('productos', 'public');
+
+            $rutaFoto = $foto->store('productos', 'custom_disk');
+            $rutaFotos = $foto->store('productos', 'public');
+
             $producto->update(['foto_producto' => $rutaFoto]);
+            $producto->update(['foto_producto' => $rutaFotos]);
         }
 
         return redirect()->route('productos.index')->with('success', 'Producto updated successfully');
     }
+
 
     /**
      * @param int $id
@@ -166,9 +211,13 @@ class ProductoController extends Controller
         // Realizar la lógica de búsqueda según tus necesidades
         $productos = Producto::where('codigo_producto', 'LIKE', "%$search%")
             ->orWhere('detalle_producto', 'LIKE', "%$search%")
+            ->orWhereHas('marca', function ($query) use ($search) {
+                $query->where('nombre_marca', 'LIKE', "%$search%");
+            })
             ->get();
 
         // Pasar los resultados de la búsqueda a la vista resultados.blade.php
         return view('producto.buscar', compact('productos'));
     }
+
 }

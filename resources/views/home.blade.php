@@ -1,11 +1,10 @@
 @extends('adminlte::page')
-
-@section('title', 'Cable Colors')
+@section('title', 'El Porvenir')
 
 @section('content_header')
 
     @section('content')
-    <h1>Bienvenido Administrador</h1>
+        <h1>Bienvenido Administrador</h1>
 
         <!DOCTYPE html>
         <html lang="en">
@@ -42,9 +41,9 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:#7F135FFF ">
-                                        Servicios Asignados</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="numero-servicios-asignados">
-
+                                        Productos Registrados</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="numeroProductos">
+                                        {{ $totalProductos}}
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -55,16 +54,16 @@
                     </div>
                 </div>
 
-                <!-- Earnings (Monthly) Card Example -->
+                <!-- Repite un bloque similar para mostrar las marcas registradas -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-success shadow h-100 py-2 border border-dark">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color: #06065DFF">
-                                        Tecnicos Disponibles</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="numeroDeTecnicos">
-
+                                        Marcas Registradas</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="numeroMarcas">
+                                        {{ $totalMarcas }}
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -74,6 +73,7 @@
                         </div>
                     </div>
                 </div>
+
 
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
@@ -122,42 +122,35 @@
                     </div>
                 </div>
             </div>
-            <div id="imghome">
-                <img src="https://lh4.googleusercontent.com/E2hSBHk_T8LChWkv8HMwDa1EFr0CWOpH8siVTKgPJJF3sUpn7O-VDJ0xST4vT4K-eXw0yXxaA0phK72gXQwUWXkXCqD53L1hRmyrytBOH-CGw7LHGjuNb-UR6ALBmk5g=w1280">
+
+            <div id="imghome" class="text-center">
+                <img src="https://elporvenir.shop/storage/productos/Xq2ATGVzAiiMdCZ78rt7qi9V4F3CY480EXjsNnZq.png" class="img-fluid rounded">
             </div>
+        </div>
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="dashboard/vendor/jquery/jquery.min.js"></script>
-            <script src="dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="dashboard/vendor/jquery/jquery.min.js"></script>
+        <script src="dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-            <!-- Core plugin JavaScript-->
-            <script src="dashboard/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="dashboard/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-            <!-- Custom scripts for all pages-->
-            <script src="dashboard/js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="dashboard/js/sb-admin-2.min.js"></script>
 
-            <!-- Page level plugins -->
-            <script src="dashboard/vendor/chart.js/Chart.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="dashboard/vendor/chart.js/Chart.min.js"></script>
 
-            <!-- Page level custom scripts -->
-            <script src="dashboard/js/demo/chart-area-demo.js"></script>
-            <script src="dashboard/js/demo/chart-pie-demo.js"></script>
-
-            <style>
-
-                #imghome img {
-                    margin-left: 30%;
-                    height: auto; /* Altura automática para mantener la proporción original */
-                }
-
-            </style>
+        <!-- Page level custom scripts -->
+        <script src="dashboard/js/demo/chart-area-demo.js"></script>
+        <script src="dashboard/js/demo/chart-pie-demo.js"></script>
 
 
         </html>
-    </body>
-@stop
+        </body>
+    @stop
 
 
-@section('js')
-    <script> console.log('Hi!'); </script>
-@stop
+    @section('js')
+        <script> console.log('Hi!'); </script>
+    @stop

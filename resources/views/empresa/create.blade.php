@@ -2,9 +2,8 @@
 @section('title', 'EL Porvenir')
 
 @section('template_title')
-    {{ __('Actualizar') }} Marca
+    {{ __('Create') }} Empresa
 @endsection
-
 
 @section('content')
     <section class="content container-fluid">
@@ -13,22 +12,19 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="card shadow-lg p-3 mb-5 bg-white ">
-                        <div class="card-header">EDITAR MARCA</div>
+                        <div class="card-header">AGREGAR EMPRESA</div>
                         <div class="card-body">
+
                 @includeif('partials.errors')
 
                 <div class="card card-default">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('marcas.update', $marca->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        <form method="POST" action="{{ route('empresas.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('marca.form')
+                            @include('empresa.form')
 
                         </form>
-                    </div>
-                </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -58,5 +54,6 @@
             color:white;
         }
     </style>
+
 
 @endsection

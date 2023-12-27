@@ -320,6 +320,31 @@ return [
 
         ],
         [
+            'text'    => 'Empresa',
+            'icon'    => 'fa  fa-registered',
+            'submenu' => [
+                [
+                    'text' => 'Ingresar Empresa',
+                    'url'  => '/empresas/create',
+                    'icon'    => 'fa fa-plus-circle',
+                ],
+
+            ],
+
+        ],
+        [
+            'text'    => 'Facturas',
+            'icon'    => ' fa fa-tags',
+            'submenu' => [
+                [
+                    'text' => 'Ingresar Factura',
+                    'url'  => '/facturas/create',
+                    'icon'    => 'fa fa-tag',
+                ],
+            ],
+
+        ],
+        [
             'text'    => 'Consultar Producto',
             'url'  => '/buscar',
             'icon'    => 'fa fa-search',
@@ -331,8 +356,8 @@ return [
             'icon'    => 'fa fa-list',
             'submenu' => [
                 [
-                    'text' => ' Marcas Registrados',
-                    'url'  => '/marcas',
+                    'text' => ' Facturas Registradas',
+                    'url'  => '/facturas',
                     'icon'    => 'fa fa-list-alt',
 
                 ],
@@ -340,6 +365,24 @@ return [
                     'text' => ' Productos Registrados',
                     'url'  => '/productos',
                     'icon'    => 'fa fa-outdent',
+
+                ],
+                [
+                    'text' => ' Marcas Registrados',
+                    'url'  => '/marcas',
+                    'icon'    => 'fa fa-list-alt',
+
+                ],
+                [
+                    'text' => ' Empresas Registrados',
+                    'url'  => '/empresas',
+                    'icon'    => 'fa fa-list-alt',
+
+                ],
+                [
+                    'text' => ' Cheques Asignados',
+                    'url'  => '/cheques',
+                    'icon'    => 'fa fa-list-alt',
 
                 ],
             ],

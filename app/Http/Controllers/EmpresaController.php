@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Marca;
-use App\Models\Producto;
+use App\Models\Empresa;
 use Illuminate\Http\Request;
 
 /**
- * Class MarcaController
+ * Class EmpresaController
  * @package App\Http\Controllers
  */
-class MarcaController extends Controller
+class EmpresaController extends Controller
 {
     public function __construct()
     {
@@ -21,14 +20,12 @@ class MarcaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $query = Marca::query();
-        $query->orderBy('created_at', 'desc');
-        $marcas = $query->paginate(6);
+        $empresas = Empresa::paginate();
 
-        return view('marca.index', compact('marcas'))
-            ->with('i', (request()->input('page', 1) - 1) * $marcas->perPage());
+        return view('empresa.index', compact('empresas'))
+            ->with('i', (request()->input('page', 1) - 1) * $empresas->perPage());
     }
 
     /**
@@ -38,8 +35,8 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        $marca = new Marca();
-        return view('marca.create', compact('marca'));
+        $empresa = new Empresa();
+        return view('empresa.create', compact('empresa'));
     }
 
     /**
@@ -50,12 +47,12 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Marca::$rules);
+        request()->validate(Empresa::$rules);
 
-        $marca = Marca::create($request->all());
+        $empresa = Empresa::create($request->all());
 
-        return redirect()->route('marcas.index')
-            ->with('success', 'Marca created successfully.');
+        return redirect()->route('empresas.index')
+            ->with('success', 'Empresa created successfully.');
     }
 
     /**
@@ -66,9 +63,9 @@ class MarcaController extends Controller
      */
     public function show($id)
     {
-        $marca = Marca::find($id);
+        $empresa = Empresa::find($id);
 
-        return view('marca.show', compact('marca'));
+        return view('empresa.show', compact('empresa'));
     }
 
     /**
@@ -79,26 +76,26 @@ class MarcaController extends Controller
      */
     public function edit($id)
     {
-        $marca = Marca::find($id);
+        $empresa = Empresa::find($id);
 
-        return view('marca.edit', compact('marca'));
+        return view('empresa.edit', compact('empresa'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Marca $marca
+     * @param  Empresa $empresa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marca $marca)
+    public function update(Request $request, Empresa $empresa)
     {
-        request()->validate(Marca::$rules);
+        request()->validate(Empresa::$rules);
 
-        $marca->update($request->all());
+        $empresa->update($request->all());
 
-        return redirect()->route('marcas.index')
-            ->with('success', 'Marca updated successfully');
+        return redirect()->route('empresas.index')
+            ->with('success', 'Empresa updated successfully');
     }
 
     /**
@@ -108,9 +105,9 @@ class MarcaController extends Controller
      */
     public function destroy($id)
     {
-        $marca = Marca::find($id)->delete();
+        $empresa = Empresa::find($id)->delete();
 
-        return redirect()->route('marcas.index')
-            ->with('success', 'Marca deleted successfully');
+        return redirect()->route('empresas.index')
+            ->with('success', 'Empresa deleted successfully');
     }
 }
