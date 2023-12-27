@@ -50,7 +50,7 @@
                                 @foreach ($facturas as $factura)
                                     <tr>
                                         <td>{{ $factura->numero_factura }}</td>
-                                        <td>{{ $factura->created_at }}</td>
+                                        <td>{{ $factura->created_at->format('d-m-Y') }}</td>
                                         <td>Q. {{ $factura->monto }}</td>
                                         <td>{{ $factura->empresa->nombre_empresa }}</td>
                                         <td><img src="{{ asset('storage/' . $factura->foto_fac) }}" alt="Foto" width="50"></td>

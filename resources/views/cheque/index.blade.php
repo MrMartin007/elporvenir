@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid text-center">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -34,8 +34,6 @@
                                     <th>Factura Asociada</th>
                                     <th>Foto de Factura</th>
                                     <th>Estado</th>
-
-
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -43,8 +41,8 @@
                                     <tr>
 
                                         <td>{{ $cheque->no_cheque }}</td>
-                                        <td>{{ $cheque->fecha_cobro }}</td>
-                                        <td>{{ $cheque->created_at }}</td>
+                                        <td>{{ $cheque->fecha_cobro->format('d-m-Y') }}</td>
+                                        <td>{{ $cheque->created_at->format('d-m-Y') }}</td>
                                         <td>
                                             <a href="#" data-toggle="modal" data-target="#imagen{{ $cheque->id }}">
                                                 @if($cheque->foto_ch)

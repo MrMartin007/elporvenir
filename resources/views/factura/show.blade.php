@@ -32,7 +32,7 @@
                             <td>{{ $factura->numero_factura }}</td>
                             <td>Q. {{ $factura->monto }}</td>
                             <td>{{ $factura->empresa->nombre_empresa }}</td>
-                            <td>{{ $factura->created_at }}</td>
+                            <td>{{ $factura->created_at->format('d-m-Y') }}</td>
                             <td>
                                 <a href="#" data-toggle="modal" data-target="#imagenModal">
                                     <img src="{{ asset('storage/' . $factura->foto_fac) }}" alt="Foto" width="50">
@@ -68,7 +68,7 @@
                                     <tr>
                                         <td>{{ $factura->cheque->no_cheque }}</td>
                                         <td>{{ $factura->cheque->fecha_cobro }}</td>
-                                        <td>{{ $factura->cheque->created_at }}</td>
+                                        <td>{{ $factura->cheque->created_at->format('d-m-Y') }}</td>
                                         <td>
                                             <a href="#" data-toggle="modal" data-target="#imagen">
                                                 @if($factura->cheque->foto_ch)

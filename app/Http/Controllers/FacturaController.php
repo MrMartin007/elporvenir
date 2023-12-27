@@ -28,7 +28,9 @@ class FacturaController extends Controller
     public function index(Request $request)
     {
         $query = Factura::query();
+        $query->orderBy('updated_at', 'desc');
         $query->orderBy('created_at', 'desc');
+
 
         $search = $request->input('search');
 

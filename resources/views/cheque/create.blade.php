@@ -25,7 +25,9 @@
 
                             @csrf
                             @include('cheque.form')
-                            <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
+                            <div class="box-footer mt20 offset-4">
+                                <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
+                            </div>
                         </form>
 
 
