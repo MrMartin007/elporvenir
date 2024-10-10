@@ -27,7 +27,7 @@
         </div>
             <div class="col-md-5 mb-4 ">
                 {{ Form::label('Empresas') }}
-                {{ Form::select('empresas_id', $empresa, $factura->empresas_id, ['class' => 'form-control' . ($errors->has('empresas_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione']) }}
+            {{ Form::select('empresas_id', $empresa, $factura->empresas_id, ['class' => 'form-control select2' . ($errors->has('empresas_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione']) }}
                 {!! $errors->first('empresas_id', '<div class="invalid-feedback">:message</div>') !!}
             </div>
         </div>

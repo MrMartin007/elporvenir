@@ -16,18 +16,18 @@
                         <div class="card-body">
 
 
-                            @includeif('partials.errors')
+                        @includeif('partials.errors')
 
-                            <div class="card card-default">
-                                <div class="card-body">
-                                    <form method="POST" action="{{ route('productos.store') }}"  role="form" enctype="multipart/form-data">
-                                        @csrf
+                <div class="card card-default">
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('productos.store') }}"  role="form" enctype="multipart/form-data">
+                            @csrf
 
-                                        @include('producto.form')
+                            @include('producto.form')
 
-                                    </form>
-                                </div>
-                            </div>
+                        </form>
+                    </div>
+                </div>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,42 @@
             background: linear-gradient(to right, #3a4047, #4e555b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
             color:white;
         }
+    /* Ajustar la altura del select de Select2 */
+        .select2-container .select2-selection--single {
+            height: 37px !important; /* Asegúrate de que esta altura coincida con la altura de los otros campos */
+            display: flex;
+            align-items: center;
     </style>
 
 @endsection
+@section('js')
+
+    <title>Página Principal</title>
+    <!-- Cargar jQuery antes que Select2 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Usa esta versión más reciente -->
+
+    <!-- Archivos de Bootstrap CSS -->
+
+    <!-- Select2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Otras librerías JavaScript (asegúrate de que jQuery ya esté cargado) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: "Seleccione una Marca",
+                width: '100%'
+            });
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+@endsection
+
 

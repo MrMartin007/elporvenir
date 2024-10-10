@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
  */
 class ProductoController extends Controller
 {
-    public function __construct()
+     public function __construct()
     {
         $this->middleware('auth'); // Aplica el middleware auth a todas las acciones del controlador
     }
@@ -65,7 +65,7 @@ class ProductoController extends Controller
     public function create()
     {
         $producto = new Producto();
-        $marcas = Marca::pluck('nombre_marca', 'id');
+        $marcas = Marca::orderBy('nombre_marca' , 'asc')->pluck('nombre_marca', 'id');
         return view('producto.create', compact('producto','marcas'));
     }
 
@@ -91,8 +91,7 @@ class ProductoController extends Controller
         // Carga de la foto y asignación de la ruta a la entidad "Marca"
         if ($request->hasFile('foto_producto')) {
             $foto = $request->file('foto_producto');
-            $rutaFoto = $foto->store('productos', 'custom_disk');
-            $rutaFotos = $foto->store('productos', 'public');
+            $rutaFoto = $foto->store('productos', 'public');
         }
 
         // Creación de la entidad "Marca" con los datos ingresados
@@ -104,7 +103,6 @@ class ProductoController extends Controller
         $producto->precio_docena = $request->precio_docena;
         $producto->marcas_id = $request->marcas_id;
         $producto->foto_producto = $rutaFoto ?? null; // Asignación de la ruta de la foto o null si no se cargó ninguna foto
-        $producto->foto_producto = $rutaFotos ?? null; // Asignación de la ruta de la foto o null si no se cargó ninguna foto
         $producto->save();
         }catch(QueryException $queryException){
 
@@ -176,11 +174,9 @@ class ProductoController extends Controller
         if ($request->hasFile('foto_producto')) {
             $foto = $request->file('foto_producto');
 
-            $rutaFoto = $foto->store('productos', 'custom_disk');
-            $rutaFotos = $foto->store('productos', 'public');
+            $rutaFoto = $foto->store('productos', 'public');
 
             $producto->update(['foto_producto' => $rutaFoto]);
-            $producto->update(['foto_producto' => $rutaFotos]);
         }
 
         return redirect()->route('productos.index')->with('success', 'Producto updated successfully');

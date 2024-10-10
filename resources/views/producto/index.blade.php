@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'El Porvenir')
+@section('title', 'EL Porvenir')
 
 @section('template_title')
     Producto
@@ -80,6 +80,7 @@
                         </div>
                     </div>
                 </div>
+
                 {{ $productos->onEachSide(3)->links('pagination::simple-bootstrap-4') }}
             </div>
         </div>
@@ -160,3 +161,4 @@
         </script>
     @endif
 @endsection
+

@@ -54,7 +54,9 @@ class Factura extends Model
      */
     public function empresa()
     {
-        return $this->hasOne('App\Models\empresa', 'id', 'empresas_id');
+        return $this->hasOne('App\Models\Empresa', 'id', 'empresas_id');
+        return $this->belongsTo(Empresa::class, 'empresas_id');
+
     }
 
     public function cheque()

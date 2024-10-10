@@ -14,9 +14,11 @@ return [
     |
     */
 
-    'title' => 'El Porvenir',
+
+    'title' => 'BC Porvenir | Puerto Barrios, Izabal ',
     'title_prefix' => '',
     'title_postfix' => '',
+
 
     /*
     |--------------------------------------------------------------------------
@@ -63,8 +65,8 @@ return [
     |
     */
 
-    'logo' => '<b>El</b> Porvenir',
-    'logo_img' => 'https://lh6.googleusercontent.com/mKKZ9Ofvf-i5s-rQv1he4D1SMpJheSKYBljRz3nBDploPcg1BICEMUngyjwYjn42uFvLMwlDPkfFXLhJIiz5gogv1TpDUTa3UNu82mhYOGudhNYzmWBxL57oPxgM2c4epQ=w1280',
+    'logo' => '<b>BC</b> Porvenir',
+    'logo_img' => 'https://elporvenir.shop/storage/productos/9gAHUe0WuGJAMpNiK2klQUQuhUHmIJJnmqFHVm6z.jpg',
     'logo_img_class' => 'brand-image elevation-5',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +88,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'https://lh6.googleusercontent.com/mKKZ9Ofvf-i5s-rQv1he4D1SMpJheSKYBljRz3nBDploPcg1BICEMUngyjwYjn42uFvLMwlDPkfFXLhJIiz5gogv1TpDUTa3UNu82mhYOGudhNYzmWBxL57oPxgM2c4epQ=w1280',
+            'path' => 'https://elporvenir.shop/storage/productos/9gAHUe0WuGJAMpNiK2klQUQuhUHmIJJnmqFHVm6z.jpg',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 70,
@@ -109,7 +111,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'https://lh4.googleusercontent.com/E2hSBHk_T8LChWkv8HMwDa1EFr0CWOpH8siVTKgPJJF3sUpn7O-VDJ0xST4vT4K-eXw0yXxaA0phK72gXQwUWXkXCqD53L1hRmyrytBOH-CGw7LHGjuNb-UR6ALBmk5g=w1280',
+            'path' => 'https://elporvenir.shop/storage/productos/Xq2ATGVzAiiMdCZ78rt7qi9V4F3CY480EXjsNnZq.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 500,
@@ -192,7 +194,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-navy',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -290,107 +292,70 @@ return [
     */
 
     'menu' => [
-
-
-
         ['header' => ''],
         [
-            'text'    => 'Marca',
-            'icon'    => 'fa  fa-registered',
-            'submenu' => [
-                [
-                    'text' => 'Ingresar Marca',
-                    'url'  => '/marcas/create',
-                    'icon'    => 'fa fa-plus-circle',
-                ],
-
-            ],
-
-        ],
-        [
-            'text'    => 'Productos',
-            'icon'    => ' fa fa-tags',
-            'submenu' => [
-                [
-                    'text' => 'Ingresar Producto',
-                    'url'  => '/productos/create',
-                    'icon'    => 'fa fa-tag',
-                ],
-            ],
-
-        ],
-        [
-            'text'    => 'Empresa',
-            'icon'    => 'fa  fa-registered',
-            'submenu' => [
-                [
-                    'text' => 'Ingresar Empresa',
-                    'url'  => '/empresas/create',
-                    'icon'    => 'fa fa-plus-circle',
-                ],
-
-            ],
-
-        ],
-        [
-            'text'    => 'Facturas',
-            'icon'    => ' fa fa-tags',
-            'submenu' => [
-                [
-                    'text' => 'Ingresar Factura',
-                    'url'  => '/facturas/create',
-                    'icon'    => 'fa fa-tag',
-                ],
-            ],
-
+            'text'    => 'Calendario',
+            'url'  => '/calendario',
+            'icon'    => 'far fa-calendar-alt', // Icono para Calendario
         ],
         [
             'text'    => 'Consultar Producto',
             'url'  => '/buscar',
-            'icon'    => 'fa fa-search',
-
+            'icon'    => 'fas fa-search', // Icono para Consultar Producto
         ],
-
+        [
+            'text' => 'Ingresar Marca',
+            'url'  => '/marcas/create',
+            'icon'    => 'fa  fa-registered', // Icono para Ingresar Marca
+        ],
+        [
+            'text' => 'Ingresar Producto',
+            'url'  => '/productos/create',
+            'icon'    => 'fas fa-tags', // Icono para Ingresar Producto
+        ],
+        [
+            'text' => 'Ingresar Factura',
+            'url'  => '/facturas/create',
+            'icon'    => 'far fa-file-alt', // Icono para Ingresar Factura
+        ],
+        [
+            'text' => 'Ingresar Empresa',
+            'url'  => '/empresas/create',
+            'icon'    => 'far fa-building', // Icono para Ingresar Empresa
+        ],
         [
             'text'    => 'Reportes',
-            'icon'    => 'fa fa-list',
+            'icon'    => 'far fa-list-alt',
             'submenu' => [
                 [
                     'text' => ' Facturas Registradas',
                     'url'  => '/facturas',
-                    'icon'    => 'fa fa-list-alt',
-
+                    'icon'    => 'far fa-file-alt',
                 ],
                 [
                     'text' => ' Productos Registrados',
                     'url'  => '/productos',
-                    'icon'    => 'fa fa-outdent',
-
+                    'icon'    => 'fas fa-list-ol',
                 ],
                 [
                     'text' => ' Marcas Registrados',
                     'url'  => '/marcas',
-                    'icon'    => 'fa fa-list-alt',
-
+                    'icon'    => 'far fa-list-alt',
                 ],
                 [
                     'text' => ' Empresas Registrados',
                     'url'  => '/empresas',
-                    'icon'    => 'fa fa-list-alt',
-
+                    'icon'    => 'far fa-building',
                 ],
                 [
                     'text' => ' Cheques Asignados',
                     'url'  => '/cheques',
-                    'icon'    => 'fa fa-list-alt',
-
+                    'icon'    => 'far fa-list-alt',
                 ],
             ],
-
         ],
-
-
     ],
+
 
     /*
     |--------------------------------------------------------------------------

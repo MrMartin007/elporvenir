@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $created_at
  * @property $updated_at
  *
+ * @property Empresa $empresa
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -45,5 +46,17 @@ class Cheque extends Model
         return $this->belongsTo(Factura::class);
     }
 
+    public function calendario()
+    {
+        // Obtén las fechas de cobro de la tabla de cheques
+        $fechasCobro = Cheque::pluck('fecha_cobro');
 
+        return view('calendario', compact('fechasCobro'));
+    }
+    public function empresa()
+    {
+        return $this->hasOne('App\Models\Empresa', 'id', 'empresas_id');
+        return $this->belongsTo(Empresa::class, 'empresas_id');
+
+    }
 }

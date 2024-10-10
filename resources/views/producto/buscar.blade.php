@@ -26,6 +26,7 @@
                             </div>
                         </div>
                     </div>
+
                     @if(isset($productos))
                         <div class="container">
                             @if($productos->count() > 0)
@@ -88,5 +89,4 @@
         });
     </script>
 @endsection
-
 

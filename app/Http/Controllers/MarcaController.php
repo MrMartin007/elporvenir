@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Marca;
-use App\Models\Producto;
 use Illuminate\Http\Request;
 
 /**
@@ -12,7 +11,7 @@ use Illuminate\Http\Request;
  */
 class MarcaController extends Controller
 {
-    public function __construct()
+     public function __construct()
     {
         $this->middleware('auth'); // Aplica el middleware auth a todas las acciones del controlador
     }
@@ -21,9 +20,9 @@ class MarcaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $query = Marca::query();
+         $query = Marca::query();
         $query->orderBy('created_at', 'desc');
         $marcas = $query->paginate(6);
 

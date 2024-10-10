@@ -137,7 +137,7 @@
                 <div class="col-lg-6">
                     <div class="card1 pb-5">
                         <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
-                            <img src="https://lh6.googleusercontent.com/mKKZ9Ofvf-i5s-rQv1he4D1SMpJheSKYBljRz3nBDploPcg1BICEMUngyjwYjn42uFvLMwlDPkfFXLhJIiz5gogv1TpDUTa3UNu82mhYOGudhNYzmWBxL57oPxgM2c4epQ=w1280" class="image">
+                            <img src="https://elporvenir.shop/storage/productos/9gAHUe0WuGJAMpNiK2klQUQuhUHmIJJnmqFHVm6z.jpg" class="image">
                         </div>
                     </div>
                 </div>
@@ -168,11 +168,18 @@
 
                         <div class="row px-3 mb-4">
                             <div class="custom-control custom-checkbox custom-control-inline">
-                                <input id="chk1" type="checkbox" name="chk" class="custom-control-input">
+                                <input type="checkbox" name="chk" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                <label for="chk1" class="custom-control-label text-sm">Recordarme</label>
+                                <label for="remember" class="custom-control-label text-sm">Recordarme</label>
                             </div>
-                            <a href="#" class="ml-auto mb-0 text-sm">Se te olvido tu Contraseña?</a>
+
+                            @if (Route::has('password.request'))
+                                <a class="ml-auto mb-0 text-sm" href="{{ route('password.request') }}">
+                                    {{ __('Olvidé mi contraseña') }}
+                                </a>
+                            @endif
+
+
                         </div>
                         <div class="row mb-4 px-3">
                             <button type="submit" class="btn btn-blue text-center">Iniciar Sesion</button>
@@ -196,5 +203,6 @@
     </div>
 
 @endsection
+
 
 

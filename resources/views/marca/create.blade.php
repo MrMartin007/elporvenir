@@ -16,17 +16,17 @@
                         <div class="card-header">AGREGAR MARCA</div>
                         <div class="card-body">
 
-                            @includeif('partials.errors')
+                        @includeif('partials.errors')
 
-                            <div class="card card-default">
-                                <div class="card-body">
-                                    <form method="POST" action="{{ route('marcas.store') }}"  role="form" enctype="multipart/form-data">
-                                        @csrf
+                <div class="card card-default">
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('marcas.store') }}"  role="form" enctype="multipart/form-data">
+                            @csrf
 
-                                        @include('marca.form')
-                                    </form>
-                                </div>
-                            </div>
+                            @include('marca.form')
+                        </form>
+                    </div>
+                </div>
                         </div>
                     </div>
                 </div>

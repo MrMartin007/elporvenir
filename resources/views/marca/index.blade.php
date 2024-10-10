@@ -1,8 +1,8 @@
 @extends('adminlte::page')
-@section('title', 'El Porvenir')
+@section('title', 'EL Porvenir')
 
 @section('template_title')
-    MARCAS
+    Marca
 @endsection
 
 @section('content')
@@ -45,10 +45,10 @@
 
                                             <td>
                                                 <form action="{{ route('marcas.destroy',$marca->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-success" href="{{ route('marcas.edit',$marca->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('marcas.edit',$marca->id) }}"><i class="fa fa-fw fa-edit"></i> </a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

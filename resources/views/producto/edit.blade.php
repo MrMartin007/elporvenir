@@ -2,7 +2,7 @@
 @section('title', 'EL Porvenir')
 
 @section('template_title')
-    {{ __('Actualizar') }} Producto
+    {{ __('Update') }} Producto
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="card shadow-lg p-3 mb-5 bg-white ">
-                        <div class="card-header">EDITAR PRODUCTO</div>
+                        <div class="card-header">EDITAR CLIENTE</div>
                         <div class="card-body">
 
                 @includeif('partials.errors')

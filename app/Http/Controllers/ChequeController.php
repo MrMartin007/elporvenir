@@ -23,15 +23,30 @@ class ChequeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $query = Cheque::query();
         $query->orderBy('created_at', 'desc');
+
+        $search = $request->input('search');
+
+             if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('no_cheque', 'LIKE', '%' . $search . '%')
+                    ->orWhere('id', $search)  // Buscar por ID
+                    ->orWhereHas('facturas', function ($subQuery) use ($search) {
+                        $subQuery->whereHas('empresa', function ($subSubQuery) use ($search) {
+                            $subSubQuery->where('nombre_empresa', 'LIKE', '%' . $search . '%');
+                        });
+                    });
+            });
+        }
         $cheques = $query->paginate(5);
         $estados = Estado::pluck('estado','id');
         $facturas = Factura::pluck('monto','id');
+        $empresas = Empresa::pluck('nombre_empresa','id');
 
-        return view('cheque.index', compact('cheques','facturas','estados'))
+        return view('cheque.index', compact('cheques','facturas','estados','empresas'))
             ->with('i', (request()->input('page', 1) - 1) * $cheques->perPage());
     }
 
@@ -80,8 +95,7 @@ class ChequeController extends Controller
 
         if ($request->hasFile('foto_ch')) {
             $foto = $request->file('foto_ch');
-            $rutaFoto = $foto->store('cheques', 'custom_disk');
-            $rutaFotos = $foto->store('cheques', 'public');
+            $rutaFoto = $foto->store('cheques', 'public');
         }
         $cheque = new Cheque();
         $cheque->no_cheque = $request->no_cheque;
@@ -89,7 +103,6 @@ class ChequeController extends Controller
         $cheque->facturas_id = $request->facturas_id;
         $cheque->estados_id = $request->estados_id;
         $cheque->foto_ch = $rutaFoto ?? null; // Asignación de la ruta de la foto o null si no se cargó ninguna foto
-        $cheque->foto_ch = $rutaFotos ?? null; // Asignación de la ruta de la foto o null si no se cargó ninguna foto
         $cheque->save();
 
 

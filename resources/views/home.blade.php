@@ -75,44 +75,41 @@
                 </div>
 
 
-                <!-- Earnings (Monthly) Card Example -->
+         
                 <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2 border border-dark">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Servicios Completados
-                                    </div>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-auto">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">72%</div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="progress progress-sm mr-2">
-                                                <div class="progress-bar bg-info" role="progressbar"
-                                                     style="width: 72%" aria-valuenow="72" aria-valuemin="0"
-                                                     aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                </div>
+    <div class="card border-left-info shadow h-100 py-2 border border-dark">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Facturas Recibidas</div>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                Q. {{ number_format($montoTotalFactura, 2) }}
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-auto">
+                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <!-- Pending Requests Card Example -->
+
+                  <!-- Pending Requests Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-warning shadow h-100 py-2 border border-dark">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                        Reporetes </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                        Cheques Asignados sin Cubrir </div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                    Q. {{number_format ($montoTotalFacturasCheques, 2) }}
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-list fa-2x text-gray-300"></i>
@@ -154,3 +151,8 @@
     @section('js')
         <script> console.log('Hi!'); </script>
     @stop
+    @if (session('status') == 'verification-link-sent')
+        <div class="alert alert-success" role="alert">
+            Se ha verificado tu correo electrónico correctamente.
+        </div>
+    @endif

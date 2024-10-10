@@ -27,9 +27,12 @@ class FacturaController extends Controller
      */
     public function index(Request $request)
     {
+           $empresa = Empresa::pluck('nombre_empresa', 'id');
+
         $query = Factura::query();
         $query->orderBy('updated_at', 'desc');
         $query->orderBy('created_at', 'desc');
+
 
 
         $search = $request->input('search');
@@ -37,13 +40,15 @@ class FacturaController extends Controller
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('numero_factura', 'LIKE', '%' . $search . '%')
-                    ->orWhereHas('empresa', function ($subQuery) use ($search) {
+                    ->orWhereHas('Empresa', function ($subQuery) use ($search) {
                         $subQuery->where('nombre_empresa', 'LIKE', '%' . $search . '%');
                     });
             });
         }
 
         $facturas = $query->paginate(5);
+                $facturas->appends(['search' => $search]);
+
 
         $empresa = Empresa::pluck('nombre_empresa', 'id');
 
@@ -60,7 +65,7 @@ class FacturaController extends Controller
     public function create()
     {
         $factura = new Factura();
-        $empresa = Empresa::pluck('nombre_empresa', 'id');
+        $empresa = Empresa::orderBy('nombre_empresa', 'asc')->pluck('nombre_empresa', 'id');
         $estados = estado::pluck('estado', 'id');
         return view('factura.create', compact('factura','empresa','estados'));
     }
@@ -75,7 +80,7 @@ class FacturaController extends Controller
     {
         try {
             $request->validate([
-            'numero_factura' => 'required',
+            'numero_factura' => 'required|unique:facturas,numero_factura',
             'monto' => 'required',
             'foto_fac' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             // Agrega las otras reglas de validación según sea necesario
@@ -83,8 +88,7 @@ class FacturaController extends Controller
 
         if ($request->hasFile('foto_fac')) {
             $foto = $request->file('foto_fac');
-            $rutaFoto = $foto->store('facturas', 'custom_disk');
-            $rutaFotos = $foto->store('facturas', 'public');
+            $rutaFoto = $foto->store('facturas', 'public');
         }
         // Crear la factura con la ruta de la imagen
         $factura = new Factura();
@@ -93,7 +97,6 @@ class FacturaController extends Controller
         $factura->empresas_id = $request->empresas_id;
         $factura->estados_id = $request->estados_id;
         $factura->foto_fac = $rutaFoto ?? null; // Asignación de la ruta de la foto o null si no se cargó ninguna foto
-        $factura->foto_fac = $rutaFotos ?? null; // Asignación de la ruta de la foto o null si no se cargó ninguna foto
         $factura->save();
         }catch(QueryException $queryException){
 
@@ -117,8 +120,9 @@ class FacturaController extends Controller
     {
         $factura = Factura::with('cheque')->find($id);
         $cheque = Cheque::pluck('foto_ch', 'id');
+        $empresa = Empresa::pluck('nombre_empresa', 'id');
 
-        return view('factura.show', compact('factura','cheque'));
+        return view('factura.show', compact('factura','cheque','empresa'));
     }
 
 
@@ -160,11 +164,9 @@ class FacturaController extends Controller
         if ($request->hasFile('foto_fac')) {
             $foto = $request->file('foto_fac');
 
-            $rutaFoto = $foto->store('facturas', 'custom_disk');
-            $rutaFotos = $foto->store('facturas', 'public');
+            $rutaFoto = $foto->store('facturas', 'public');
 
             $factura->update(['foto_fac' => $rutaFoto]);
-            $factura->update(['foto_fac' => $rutaFotos]);
         }
 
 

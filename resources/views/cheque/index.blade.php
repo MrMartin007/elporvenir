@@ -10,10 +10,20 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-header">
-                            <span id="card_title" style=" display: flex; font-size: 24px; font-weight: bold; margin: auto; justify-content: space-between; align-items: center;">
+                        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                                <span id="card_title" style="font-size: 24px; font-weight: bold;">
                                 {{ __('Cheques Asignados') }}
                             </span>
+                            <form method="GET" action="{{ route('cheques.index') }}" class="form-inline ml-auto">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" name="search" placeholder="Buscar " value="{{ request('search') }}">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -29,9 +39,10 @@
                                 <tr>
                                     <th>No Cheque</th>
                                     <th>Fecha Cobro</th>
-                                    <th>Fecha de Asignacion</th>
+                                    <th>Monto </th>
                                     <th>Foto de Cheque</th>
                                     <th>Factura Asociada</th>
+                                    <th>Empresa </th>
                                     <th>Foto de Factura</th>
                                     <th>Estado</th>
                                 </tr>
@@ -41,8 +52,14 @@
                                     <tr>
 
                                         <td>{{ $cheque->no_cheque }}</td>
-                                        <td>{{ $cheque->fecha_cobro->format('d-m-Y') }}</td>
-                                        <td>{{ $cheque->created_at->format('d-m-Y') }}</td>
+                                        <td>
+                                            @if(is_string($cheque->fecha_cobro))
+                                                {{ \Carbon\Carbon::parse($cheque->fecha_cobro)->format('d-m-Y') }}
+                                            @else
+                                                {{ $cheque->fecha_cobro->format('d-m-Y') }}
+                                            @endif
+                                        </td>
+                                        <td>Q. {{ $cheque->facturas->monto}}</td>
                                         <td>
                                             <a href="#" data-toggle="modal" data-target="#imagen{{ $cheque->id }}">
                                                 @if($cheque->foto_ch)
@@ -53,6 +70,7 @@
                                             </a>
                                         </td>
                                         <td>{{ $cheque->facturas->numero_factura ?? 'Sin factura asociada' }}</td>
+                                        <td>{{ $cheque->facturas->empresa->nombre_empresa ?? 'Sin factura asociada' }}</td>
                                         <td>
                                             <a href="#" data-toggle="modal" data-target="#imagenModal{{ $cheque->id }}">
                                                 @if($cheque->facturas->foto_fac)
@@ -153,4 +171,5 @@
     @endif
 
 @endsection
+
 

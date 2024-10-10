@@ -27,9 +27,9 @@
                 {!! $errors->first('detalle_producto', '<div class="invalid-feedback">:message</div>') !!}
 
             </div>
-            <div class="col-md-4 mb-4 ">
+          <div class="col-md-4 mb-4 ">
                 {{ Form::label('marcas_id','Marca') }}
-                {{ Form::select('marcas_id', $marcas, $producto->marcas_id, ['class' => 'form-control' . ($errors->has('marcas_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione una marca']) }}
+                {{ Form::select('marcas_id', $marcas, $producto->marcas_id, ['class' => 'form-control select2' . ($errors->has('marcas_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione una marca']) }}
                 {!! $errors->first('marcas_id', '<div class="invalid-feedback">:message</div>') !!}
             </div>
 
@@ -189,3 +189,4 @@
         }
     });
 </script>
+
